@@ -19,7 +19,7 @@ fi
 # Variables
 
 [ -z "$STRONGSWAN_TMP" ] && STRONGSWAN_TMP="/tmp/strongswan"
-[ -z "$STRONGSWAN_VERSION" ] && STRONGSWAN_VERSION="5.5.1"
+[ -z "$STRONGSWAN_VERSION" ] && STRONGSWAN_VERSION="5.5.2"
 [ -z "$KEYSIZE" ] && KEYSIZE=16
 #STRONGSWAN_USER
 #STRONGSWAN_PASSWORD
@@ -261,6 +261,8 @@ cd $STRONGSWAN_TMP/src
   --enable-xauth-eap \
   --enable-openssl \
   --disable-gmp
+  --enable-sql 
+  --enable-mysql
 checkForError
 
 make
@@ -359,6 +361,11 @@ charon {
     include strongswan.d/charon/*.conf
     attr {
       dns = 8.8.8.8, 8.8.4.4
+    }
+    sql {
+      # database = mysql://user:pass@localhost/database
+      # or using sqlite:
+      # database = sqlite:///etc/ipsec.d/ipsec.db
     }
   }
 }

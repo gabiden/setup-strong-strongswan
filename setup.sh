@@ -260,8 +260,8 @@ cd $STRONGSWAN_TMP/src
   --enable-eap-dynamic \
   --enable-xauth-eap \
   --enable-openssl \
-  --disable-gmp
-  --enable-sql 
+  --disable-gmp \
+  --enable-sql \
   --enable-mysql
 checkForError
 
